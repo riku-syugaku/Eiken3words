@@ -1342,11 +1342,11 @@ else if(selectbox.value === "31-40"){
     }
 else if(selectbox.value === "41-50"){
 function Change() { [a, h, e,f,g,max] = [40, 48, 50,50,50,100];}
-Change();
+Change();    Quizset();
 }
 else if(selectbox.value === "51-60"){
        
-       function Change() { [a, h, e,f,g,max] = [10, 18, 60,60,60,110];}
+       function Change() { [a, h, e,f,g,max] = [50, 58, 60,60,60,110];}
 Change();
 Quizset();
 }
