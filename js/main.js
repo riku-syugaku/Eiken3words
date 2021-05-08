@@ -9,6 +9,13 @@ const item1 = document.createElement('li');
 const item2 = document.createElement('li');
 const item3 = document.createElement('li');
 const item4 = document.createElement('li');
+const close = document.getElementById('close');
+const modal = document.getElementById('modal');
+const modal2 = document.getElementById('modal2');
+const modal3 = document.getElementById('modal3');
+const okay = document.getElementById('okay');
+let answer = document.getElementById('answer');
+const isCorrected = document.getElementById('isCorrected');
 
 const quizSet = [
   {q:`accident`,c:`事故`},
@@ -742,61 +749,61 @@ const WrongElse =[
 
 ]
 const QuizIdiom =[
-  {q:`a few ~`,c:`2,3の`},
-  {q:`a glass of ~`,c:`コップ１杯の`},
+  {q:`a few `,c:`2,3の`},
+  {q:`a glass of `,c:`コップ１杯の`},
   {q:`a little too`,c:`少し〜すぎる`},
   {q:`a lot`,c:`非常に、とても`},
-  {q:`a pair of ~`,c:`１組の、１足の`},
-  {q:`a piece of ~`,c:`１切れの`},
-  {q:`a sheet of ~`,c:`１枚の`},
-  {q:`a slice of ~`,c:`１切れの`},
+  {q:`a pair of `,c:`１組の、１足の`},
+  {q:`a piece of `,c:`１切れの`},
+  {q:`a sheet of `,c:`１枚の`},
+  {q:`a slice of `,c:`１切れの`},
   {q:`after a while`,c:`しばらくして`},
   {q:`after school`,c:`放課後に`},
-  {q:`agree with ~`,c:`同意する`},
+  {q:`agree with `,c:`同意する`},
   {q:`all day (long)`,c:`一日中`},
   {q:`all over the world`,c:`世界中で`},
   {q:`all the way`,c:`はるばる、ずっと`},
   {q:`anything else`,c:`他のなにか`},
   {q:`arrive at`,c:`到着する`},
-  {q:`as ~ as A can`,c:`Aができるだけ`},
+  {q:`as  as A can`,c:`Aができるだけ`},
   {q:`as soon as …`,c:`･･･するとすぐに`},
   {q:`as usual`,c:`いつものように`},
-  {q:`ask (A) for ~`,c:`Aに〜を求める`},
+  {q:`ask (A) for `,c:`Aに〜を求める`},
   {q:`ask A to do`,c:`Aに〜するように頼む`},
   {q:`at first`,c:`最初は`},
   {q:`at last`,c:`ついに、とうとう`},
-  {q:`at the end of ~`,c:`〜の終わりに`},
+  {q:`at the end of `,c:`〜の終わりに`},
   {q:`be able to do`,c:`〜することができる`},
-  {q:`be absent from ~`,c:`〜を休んでいる`},
+  {q:`be absent from `,c:`〜を休んでいる`},
   {q:`be at one's desk`,c:`机に向かっている`},
   {q:`be born`,c:`生まれる`},
-  {q:`be covered with ~`,c:`〜でおおわれている`},
-  {q:`be different from ~`,c:`〜と違う`},
-  {q:`be famous for ~`,c:`〜で有名である`},
-  {q:`be full of ~`,c:`〜でいっぱいである`},
+  {q:`be covered with `,c:`〜でおおわれている`},
+  {q:`be different from `,c:`〜と違う`},
+  {q:`be famous for `,c:`〜で有名である`},
+  {q:`be full of `,c:`〜でいっぱいである`},
   {q:`be glad to do`,c:`〜してうれしい`},
-  {q:`be good at ~`,c:`〜が得意である`},
+  {q:`be good at `,c:`〜が得意である`},
   {q:`be in a hurry`,c:`急いでいる`},
   {q:`be in trouble`,c:`困っている`},
-  {q:`be interested in ~`,c:`〜に興味がある`},
+  {q:`be interested in `,c:`〜に興味がある`},
   {q:`be out`,c:`外出している`},
-  {q:`be proud of ~`,c:`〜を誇りに思う`},
-  {q:`be ready for ~`,c:`〜の準備ができている`},
+  {q:`be proud of `,c:`〜を誇りに思う`},
+  {q:`be ready for `,c:`〜の準備ができている`},
   {q:`be ready to do`,c:`〜する準備ができている`},
-  {q:`be scared of ~`,c:`〜が怖い、〜を恐れる`},
-  {q:`be surprised at ~`,c:`〜に驚く`},
-  {q:`be tired of ~`,c:`〜に飽きる`},
-  {q:`be worried about ~`,c:`〜を心配している`},
-  {q:`because of~`,c:`〜のため`},
-  {q:`become friends with ~`,c:`〜と友だちになる`},
-  {q:`belong to ~`,c:`〜に所属する`},
+  {q:`be scared of `,c:`〜が怖い、〜を恐れる`},
+  {q:`be surprised at `,c:`〜に驚く`},
+  {q:`be tired of `,c:`〜に飽きる`},
+  {q:`be worried about `,c:`〜を心配している`},
+  {q:`because of`,c:`〜のため`},
+  {q:`become friends with `,c:`〜と友だちになる`},
+  {q:`belong to `,c:`〜に所属する`},
   {q:`between A and B`,c:`AとBの間に`},
   {q:`both A and B`,c:`AとBの両方とも`},
-  {q:`both of ~`,c:`〜の両方とも`},
+  {q:`both of `,c:`〜の両方とも`},
   {q:`break one's promise`,c:`約束を破る`},
   {q:`by oneself`,c:`ひとりで、自分で`},
   {q:`change trains`,c:`電車を乗り換える`},
-  {q:`clean up ~`,c:`〜をきれいに片付ける`},
+  {q:`clean up `,c:`〜をきれいに片付ける`},
   {q:`come back`,c:`戻る`},
   {q:`come home`,c:`帰宅する`},
   {q:`come true`,c:`（夢が）叶う`},
@@ -805,22 +812,22 @@ const QuizIdiom =[
   {q:`do well`,c:`うまくいく、成功する`},
   {q:`drive A home`,c:`Aを家まで送る`},
   {q:`each other`,c:`お互い`},
-  {q:`… enough for ~`,c:`〜に十分･･･`},
-  {q:`… enough to do ~`,c:`〜するのに十分･･･`},
+  {q:`… enough for `,c:`〜に十分･･･`},
+  {q:`… enough to do `,c:`〜するのに十分･･･`},
   {q:`exchange A for B`,c:`AをBと交換する`},
   {q:`fall asleep`,c:`眠りに落ちる`},
   {q:`fall down`,c:`転倒する、倒れる`},
   {q:`far away`,c:`遠くに`},
-  {q:`find out ~`,c:`〜を見つけ出す`},
+  {q:`find out `,c:`〜を見つけ出す`},
   {q:`first of all`,c:`まず最初に`},
   {q:`for a long time`,c:`長い間`},
   {q:`for example`,c:`たとえば`},
   {q:`for the first time`,c:`初めて`},
   {q:`get home`,c:`帰宅する`},
   {q:`get in trouble`,c:`面倒に巻き込まれる`},
-  {q:`get off (~)`,c:`降りる`},
-  {q:`get on (~)`,c:`乗る`},
-  {q:`get to ~`,c:`着く`},
+  {q:`get off ()`,c:`降りる`},
+  {q:`get on ()`,c:`乗る`},
+  {q:`get to `,c:`着く`},
   {q:`give A a hand`,c:`Aを手伝う`},
   {q:`give A a ride`,c:`Aを車で送る`},
   {q:`go and do`,c:`〜しに行く`},
@@ -834,18 +841,18 @@ const QuizIdiom =[
   {q:`go to bed`,c:`寝る`},
   {q:`go to the doctor`,c:`医者に診てもらいに行く`},
   {q:`go to work`,c:`仕事に行く`},
-  {q:`graduate from ~`,c:`〜を卒業する`},
+  {q:`graduate from `,c:`〜を卒業する`},
   {q:`grow up`,c:`成長する`},
   {q:`have a chance to do`,c:`〜する機会がある`},
   {q:`have a cold`,c:`風邪をひく`},
   {q:`have a great time`,c:`楽しく過ごす`},
   {q:`have a headache`,c:`頭痛がする`},
-  {q:`have been to ~`,c:`〜に行ったことがある`},
-  {q:`have enough ~ to do`,c:`〜するのに十分な･･･がある`},
+  {q:`have been to `,c:`〜に行ったことがある`},
+  {q:`have enough  to do`,c:`〜するのに十分な･･･がある`},
   {q:`have fun`,c:`楽しむ`},
   {q:`have lunch`,c:`昼食をとる`},
   {q:`have time to do`,c:`〜する時間がある`},
-  {q:`hear from ~`,c:`〜から便りがある`},
+  {q:`hear from `,c:`〜から便りがある`},
   {q:`how long …`,c:`どのくらい長く･･･`},
   {q:`how many times …`,c:`何回･･･`},
   {q:`how often …`,c:`どのくらいの頻度で･･･`},
@@ -853,95 +860,95 @@ const QuizIdiom =[
   {q:`hurry up`,c:`急ぐ`},
   {q:`I'd like to do`,c:`〜したい`},
   {q:`in fact`,c:`実は`},
-  {q:`in front of ~`,c:`〜の前で`},
+  {q:`in front of `,c:`〜の前で`},
   {q:`in one's opinion`,c:`〜の意見では`},
-  {q:`in the middle of ~`,c:`〜の真ん中に、最中に`},
+  {q:`in the middle of `,c:`〜の真ん中に、最中に`},
   {q:`in the morning`,c:`午前に`},
   {q:`in the world`,c:`世界で`},
   {q:`in time to do`,c:`〜するのに間に合って`},
   {q:`invite A to B`,c:`AをBに招待する`},
   {q:`It takes A (時間) to do`,c:`Aが〜するのに（時間）がかかる`},
-  {q:`knock on ~`,c:`〜をノックする`},
+  {q:`knock on `,c:`〜をノックする`},
   {q:`last week`,c:`先週［先月、昨年］`},
-  {q:`laugh at ~`,c:`〜を見て笑う`},
+  {q:`laugh at `,c:`〜を見て笑う`},
   {q:`leave A at home`,c:`Aを家に置き忘れる`},
   {q:`leave a message`,c:`伝言を残す`},
-  {q:`look around (~)`,c:`〜を見て回る`},
-  {q:`look for ~`,c:`〜を探す`},
+  {q:`look around ()`,c:`〜を見て回る`},
+  {q:`look for `,c:`〜を探す`},
   {q:`look forward to doing [A]`,c:`〜するのを楽しみに待つ`},
   {q:`look well`,c:`元気そうに見える`},
-  {q:`lots of ~`,c:`たくさんの〜`},
+  {q:`lots of `,c:`たくさんの〜`},
   {q:`make a speech`,c:`スピーチする`},
-  {q:`more than ~`,c:`〜以上`},
-  {q:`most of ~`,c:`〜のほとんど`},
-  {q:`move to ~`,c:`〜に引っ越す`},
+  {q:`more than `,c:`〜以上`},
+  {q:`most of `,c:`〜のほとんど`},
+  {q:`move to `,c:`〜に引っ越す`},
   {q:`need to do`,c:`〜する必要がある`},
   {q:`next time`,c:`次回は`},
-  {q:`next to ~`,c:`〜の隣に`},
-  {q:`not ~ at all`,c:`まったく〜ない`},
-  {q:`not ~ yet`,c:`まだ〜ない`},
+  {q:`next to `,c:`〜の隣に`},
+  {q:`not  at all`,c:`まったく〜ない`},
+  {q:`not  yet`,c:`まだ〜ない`},
   {q:`not have to do`,c:`〜しなくて良い`},
   {q:`not only A but also B`,c:`AだけでなくBも`},
   {q:`on business`,c:`仕事で`},
   {q:`on foot`,c:`歩いて、徒歩で`},
   {q:`on one's [the] right`,c:`右手に`},
   {q:`on one's [the] way home`,c:`家に帰る途中で`},
-  {q:`on one's [the] way to ~`,c:`〜へ行く途中で`},
+  {q:`on one's [the] way to `,c:`〜へ行く途中で`},
   {q:`on weekends`,c:`週末に`},
   {q:`one more`,c:`もう１つの`},
-  {q:`one of ~`,c:`〜の１つ`},
-  {q:`one of the ~ …`,c:`もっとも〜な･･･の１つ`},
+  {q:`one of `,c:`〜の１つ`},
+  {q:`one of the  …`,c:`もっとも〜な･･･の１つ`},
   {q:`over there`,c:`むこうに`},
-  {q:`pick up ~`,c:`車で迎えに行く`},
-  {q:`put on ~`,c:`着る`},
+  {q:`pick up `,c:`車で迎えに行く`},
+  {q:`put on `,c:`着る`},
   {q:`right now`,c:`すぐに`},
   {q:`run away`,c:`逃げる、走り去る`},
   {q:`save money`,c:`貯金する`},
-  {q:`say hello to ~`,c:`よろしくと伝える`},
-  {q:`shake hands with ~`,c:`握手する`},
-  {q:`shout at ~`,c:`叫ぶ`},
-  {q:`show A around ~`,c:`Aに〜を案内する`},
-  {q:`so ~ that …`,c:`とても〜なので･･･`},
-  {q:`something ~`,c:`なにか〜なこと`},
+  {q:`say hello to `,c:`よろしくと伝える`},
+  {q:`shake hands with `,c:`握手する`},
+  {q:`shout at `,c:`叫ぶ`},
+  {q:`show A around `,c:`Aに〜を案内する`},
+  {q:`so  that …`,c:`とても〜なので･･･`},
+  {q:`something `,c:`なにか〜なこと`},
   {q:`something to do`,c:`〜すべきもの`},
-  {q:`spend A on ~`,c:`Aを〜に費やす`},
+  {q:`spend A on `,c:`Aを〜に費やす`},
   {q:`stay home`,c:`家にいる`},
   {q:`stay up late`,c:`夜ふかしする`},
-  {q:`stay with ~`,c:`〜のところに滞在する`},
+  {q:`stay with `,c:`〜のところに滞在する`},
   {q:`take A to B`,c:`AをBにつれていく`},
-  {q:`take care of ~`,c:`世話をする`},
+  {q:`take care of `,c:`世話をする`},
   {q:`take lessons`,c:`レッスンを受ける`},
   {q:`take off`,c:`離陸する`},
-  {q:`take off ~`,c:`脱ぐ`},
-  {q:`take part in ~`,c:`参加する`},
+  {q:`take off `,c:`脱ぐ`},
+  {q:`take part in `,c:`参加する`},
   {q:`talk on the phone`,c:`電話で話す`},
   {q:`tell A to do`,c:`Aに〜するように言う`},
   {q:`than usual`,c:`いつもより`},
   {q:`the other day`,c:`先日`},
   {q:`think about doing`,c:`〜することについて考える`},
-  {q:`think of ~`,c:`〜のことを考える`},
+  {q:`think of `,c:`〜のことを考える`},
   {q:`this morning`,c:`今朝`},
-  {q:`throw away ~`,c:`捨てる`},
-  {q:`too ~ to do`,c:`あまりに〜なので･･･できない`},
-  {q:`travel to ~`,c:`〜へ旅行する`},
-  {q:`try on ~`,c:`〜を試着する`},
-  {q:`turn down ~`,c:`音量を下げる`},
+  {q:`throw away `,c:`捨てる`},
+  {q:`too  to do`,c:`あまりに〜なので･･･できない`},
+  {q:`travel to `,c:`〜へ旅行する`},
+  {q:`try on `,c:`〜を試着する`},
+  {q:`turn down `,c:`音量を下げる`},
   {q:`turn left [right]`,c:`左（右）に曲がる`},
-  {q:`turn off ~`,c:`消す、止める`},
-  {q:`turn on ~`,c:`つける、出す`},
-  {q:`turn up ~`,c:`音量を上げる`},
+  {q:`turn off `,c:`消す、止める`},
+  {q:`turn on `,c:`つける、出す`},
+  {q:`turn up `,c:`音量を上げる`},
   {q:`twice a month`,c:`月［週、日］に２回`},
   {q:`visit [see] A in the hospital`,c:`入院中のAを見舞う`},
-  {q:`wait for ~`,c:`〜を待つ`},
+  {q:`wait for `,c:`〜を待つ`},
   {q:`wake up`,c:`起きる、目が覚める`},
-  {q:`walk along ~`,c:`〜に沿って歩く`},
+  {q:`walk along `,c:`〜に沿って歩く`},
   {q:`want A to do`,c:`Aに〜してもらいたい`},
   {q:`want to be [become]`,c:`〜になりたい`},
   {q:`what to do`,c:`何を〜すべきか`},
   {q:`work well`,c:`うまくいく、効く`},
   {q:`would love to do`,c:`〜したい`},
-  {q:`write to ~`,c:`〜に手紙を書く`},
-  {q:`~ year(s) old`,c:`〜歳`},
+  {q:`write to `,c:`〜に手紙を書く`},
+  {q:` year(s) old`,c:`〜歳`},
 ]
 const WrongIdiom =[
   `2,3の`,
@@ -1403,18 +1410,22 @@ Change();Quizset();
   }
 
   function Quizset () {
+    choice1.removeEventListener('click',event);
     const b = Math.floor(Math.random() * (max - e)) + e ;
     let c = Math.floor(Math.random() * (max - f)) + f ;
     let d = Math.floor(Math.random() * (max - g)) + g ;
+    
   Qnum.textContent = `No.${a + 1}`;
   question.textContent = quizSet[a].q;
   
   var speak   = new SpeechSynthesisUtterance();
   speak.text  = question.textContent;
-  speak.rate  = 1;   speak.pitch = 1;
-  speak.lang  = 'en-US'; 
+  speak.rate  = 0.7; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+  speak.pitch = 1;// 声の高さ 0-2 初期値:1(0で女性の声) 
+  speak.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
   
   speechSynthesis.speak(speak);
+  
   
   
   while(choice1.firstChild){
@@ -1466,53 +1477,76 @@ Change();Quizset();
           
         let event = function(e){
           let t = e.target;
+  
+  
           if(t == item1){
-            
-            alert('正解👍');
-            
-          choice1.removeEventListener('click',event);
-          
-          if(a > h){
-            var Finish   = new SpeechSynthesisUtterance();
-            Finish.text  = 'Great!!Good job!!';
-            Finish.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
-            Finish.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
-            Finish.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
-            speechSynthesis.speak(Finish);
+          //正解の場合
   
-               alert(`合格!!`)
-              location.reload();
-          }else{
-            a++;
-          }
-          Quizset();
-      
-        }else{
+          modal3.classList.remove('hidden');
+          isCorrected.textContent = `正解！`;  
   
-            alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
-            var OMT   = new SpeechSynthesisUtterance();
-            OMT.text  = 'one more time';
-            OMT.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
-            OMT.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
-            OMT.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
-            speechSynthesis.speak(OMT);
-            alert(`やりなおしです😩`); 
+          setTimeout(()=>{
+            modal3.classList.add('hidden');
   
             choice1.removeEventListener('click',event);
-            Change();
   
+            //合格の場合
+            if(a > h){
+
+
+              var Finish   = new SpeechSynthesisUtterance();
+              Finish.text  = 'Great!!Good job!!';
+              Finish.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+              Finish.pitch = 1;// 声の高さ 0-2 初期値:1(0で女性の声) 
+              Finish.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+              speechSynthesis.speak(Finish);
+    
+              modal.classList.remove('hidden');
+               //alert(`合格!!`)
+                
+                close.addEventListener('click',()=>{
+                  location.reload();
+              })
+  
+            }else{
+                //次の問題へ
+              a++;
+              Quizset();
+            }
+          },500);
       
-            Quizset();
-            
- 
+        }else{
+          
+            //間違った場合
+  
+          modal2.classList.remove('hidden');
+          
+          answer.textContent = ` 
+          "${question.textContent}" は「${item1.textContent}」です。やり直し！`;
+  
+          var OMT   = new SpeechSynthesisUtterance();
+          OMT.text  = 'one more time';
+          OMT.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+          OMT.pitch = 1;// 声の高さ 0-2 初期値:1(0で女性の声) 
+          OMT.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+          speechSynthesis.speak(OMT);
+          
+          okay.addEventListener('click',()=>{
+            modal2.classList.add('hidden');
+            choice1.removeEventListener('click',event);
+          });
+          
+          Change();
+          Quizset();
+  
           }};
   
         choice1.addEventListener('click',event,false);
                 }
        checkAnswer();
   
-  }
-
+  } 
+  
 }
 
 let selectbox1 = form.selectbox1;
@@ -1544,19 +1578,26 @@ else if(selectbox1.value === "verb2"){
         }
  else { location.reload();}
 
-function Quizset () {
+
+
+ function Quizset () {
+  choice1.removeEventListener('click',event);
   const b = Math.floor(Math.random() * (max - e)) + e ;
   let c = Math.floor(Math.random() * (max - f)) + f ;
   let d = Math.floor(Math.random() * (max - g)) + g ;
   
 Qnum.textContent = `No.${a + 1}`;
 question.textContent = QuizVerb[a].q;
+
 var speak   = new SpeechSynthesisUtterance();
 speak.text  = question.textContent;
-speak.rate  = 1;   speak.pitch = 1;
-speak.lang  = 'en-US'; 
+speak.rate  = 0.7; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+speak.pitch = 1;// 声の高さ 0-2 初期値:1(0で女性の声) 
+speak.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
 
 speechSynthesis.speak(speak);
+
+
 
 while(choice1.firstChild){
 choice1.removeChild(choice1.firstChild);
@@ -1607,46 +1648,75 @@ const ul1 = document.querySelector('ul');
         
       let event = function(e){
         let t = e.target;
+
+
         if(t == item1){
-          
-          alert("正解👍"); 
-        choice1.removeEventListener('click',event);
+        //正解の場合
 
-        if(a > h){
-          var Finish   = new SpeechSynthesisUtterance();
-          Finish.text  = 'Great!!Good job!!';
-          Finish.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
-          Finish.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
-          Finish.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
-          speechSynthesis.speak(Finish);
+        modal3.classList.remove('hidden');
+        isCorrected.textContent = `正解！`;  
 
-           alert(`合格!!`)
-            location.reload();
-        }else{
-          a++;
-        }
-        Quizset();
-    
-      }else{
-          alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
-
-          var OMT   = new SpeechSynthesisUtterance();
-          OMT.text  = 'one more time';
-          OMT.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
-          OMT.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
-          OMT.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
-          speechSynthesis.speak(OMT);
-          alert(`やりなおしです😩`); 
+        setTimeout(()=>{
+          modal3.classList.add('hidden');
 
           choice1.removeEventListener('click',event);
-         Change();
-          Quizset();
+
+          //合格の場合
+          if(a > h){
+
+
+            var Finish   = new SpeechSynthesisUtterance();
+            Finish.text  = 'Great!!Good job!!';
+            Finish.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+            Finish.pitch = 1;// 声の高さ 0-2 初期値:1(0で女性の声) 
+            Finish.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+            speechSynthesis.speak(Finish);
+  
+            modal.classList.remove('hidden');
+             //alert(`合格!!`)
+              
+              close.addEventListener('click',()=>{
+                location.reload();
+            })
+
+          }else{
+              //次の問題へ
+            a++;
+            Quizset();
+          }
+        },500);
+    
+      }else{
+        
+          //間違った場合
+
+        modal2.classList.remove('hidden');
+        
+        answer.textContent = ` 
+        "${question.textContent}" は「${item1.textContent}」です。やり直し！`;
+
+        var OMT   = new SpeechSynthesisUtterance();
+        OMT.text  = 'one more time';
+        OMT.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+        OMT.pitch = 1;// 声の高さ 0-2 初期値:1(0で女性の声) 
+        OMT.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+        speechSynthesis.speak(OMT);
+        
+        okay.addEventListener('click',()=>{
+          modal2.classList.add('hidden');
+          choice1.removeEventListener('click',event);
+        });
+        
+        Change();
+        Quizset();
+
         }};
+
       choice1.addEventListener('click',event,false);
               }
      checkAnswer();
 
-}
+} 
 
 }
 //その他
@@ -1711,18 +1781,23 @@ else if(selectbox2.value === "else4"){
 else { location.reload();}
  
 function Quizset () {
+  choice1.removeEventListener('click',event);
   const b = Math.floor(Math.random() * (max - e)) + e ;
   let c = Math.floor(Math.random() * (max - f)) + f ;
   let d = Math.floor(Math.random() * (max - g)) + g ;
   
 Qnum.textContent = `No.${a + 1}`;
 question.textContent = QuizElse[a].q;
+
 var speak   = new SpeechSynthesisUtterance();
 speak.text  = question.textContent;
-speak.rate  = 1;   speak.pitch = 1;
-speak.lang  = 'en-US'; 
+speak.rate  = 0.7; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+speak.pitch = 1;// 声の高さ 0-2 初期値:1(0で女性の声) 
+speak.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
 
 speechSynthesis.speak(speak);
+
+
 
 while(choice1.firstChild){
 choice1.removeChild(choice1.firstChild);
@@ -1773,46 +1848,75 @@ const ul1 = document.querySelector('ul');
         
       let event = function(e){
         let t = e.target;
+
+
         if(t == item1){
-          
-          alert("正解👍"); 
-        choice1.removeEventListener('click',event);
+        //正解の場合
 
-        if(a > h){
-          var Finish   = new SpeechSynthesisUtterance();
-          Finish.text  = 'Great!!Good job!!';
-          Finish.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
-          Finish.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
-          Finish.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
-          speechSynthesis.speak(Finish);
+        modal3.classList.remove('hidden');
+        isCorrected.textContent = `正解！`;  
 
-           alert(`合格!!`)
-            location.reload();
-        }else{
-          a++;
-        }
-        Quizset();
-    
-      }else{
-          alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
-
-          var OMT   = new SpeechSynthesisUtterance();
-          OMT.text  = 'one more time';
-          OMT.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
-          OMT.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
-          OMT.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
-          speechSynthesis.speak(OMT);
-          alert(`やりなおしです😩`); 
+        setTimeout(()=>{
+          modal3.classList.add('hidden');
 
           choice1.removeEventListener('click',event);
-         Change();
-          Quizset();
+
+          //合格の場合
+          if(a > h){
+
+
+            var Finish   = new SpeechSynthesisUtterance();
+            Finish.text  = 'Great!!Good job!!';
+            Finish.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+            Finish.pitch = 1;// 声の高さ 0-2 初期値:1(0で女性の声) 
+            Finish.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+            speechSynthesis.speak(Finish);
+  
+            modal.classList.remove('hidden');
+             //alert(`合格!!`)
+              
+              close.addEventListener('click',()=>{
+                location.reload();
+            })
+
+          }else{
+              //次の問題へ
+            a++;
+            Quizset();
+          }
+        },500);
+    
+      }else{
+        
+          //間違った場合
+
+        modal2.classList.remove('hidden');
+        
+        answer.textContent = ` 
+        "${question.textContent}" は「${item1.textContent}」です。やり直し！`;
+
+        var OMT   = new SpeechSynthesisUtterance();
+        OMT.text  = 'one more time';
+        OMT.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+        OMT.pitch = 1;// 声の高さ 0-2 初期値:1(0で女性の声) 
+        OMT.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+        speechSynthesis.speak(OMT);
+        
+        okay.addEventListener('click',()=>{
+          modal2.classList.add('hidden');
+          choice1.removeEventListener('click',event);
+        });
+        
+        Change();
+        Quizset();
+
         }};
+
       choice1.addEventListener('click',event,false);
               }
      checkAnswer();
 
-}
+} 
 
 }
 let selectbox3 = form2.selectbox3;
@@ -1904,19 +2008,24 @@ else if(selectbox3.value === "idiom20"){
 
 else { location.reload();}
   
- function Quizset () {
+function Quizset () {
+  choice1.removeEventListener('click',event);
   const b = Math.floor(Math.random() * (max - e)) + e ;
   let c = Math.floor(Math.random() * (max - f)) + f ;
   let d = Math.floor(Math.random() * (max - g)) + g ;
   
 Qnum.textContent = `No.${a + 1}`;
 question.textContent = QuizIdiom[a].q;
+
 var speak   = new SpeechSynthesisUtterance();
 speak.text  = question.textContent;
-speak.rate  = 1;   speak.pitch = 1;
-speak.lang  = 'en-US'; 
+speak.rate  = 0.7; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+speak.pitch = 1;// 声の高さ 0-2 初期値:1(0で女性の声) 
+speak.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
 
 speechSynthesis.speak(speak);
+
+
 
 while(choice1.firstChild){
 choice1.removeChild(choice1.firstChild);
@@ -1967,46 +2076,75 @@ const ul1 = document.querySelector('ul');
         
       let event = function(e){
         let t = e.target;
+
+
         if(t == item1){
-          
-          alert("正解👍"); 
-        choice1.removeEventListener('click',event);
+        //正解の場合
 
-        if(a > h){
-          var Finish   = new SpeechSynthesisUtterance();
-          Finish.text  = 'Great!!Good job!!';
-          Finish.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
-          Finish.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
-          Finish.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
-          speechSynthesis.speak(Finish);
+        modal3.classList.remove('hidden');
+        isCorrected.textContent = `正解！`;  
 
-           alert(`合格!!`)
-            location.reload();
-        }else{
-          a++;
-        }
-        Quizset();
-    
-      }else{
-          alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
-
-          var OMT   = new SpeechSynthesisUtterance();
-          OMT.text  = 'one more time';
-          OMT.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
-          OMT.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
-          OMT.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
-          speechSynthesis.speak(OMT);
-          alert(`やりなおしです😩`); 
+        setTimeout(()=>{
+          modal3.classList.add('hidden');
 
           choice1.removeEventListener('click',event);
-         Change();
-          Quizset();
+
+          //合格の場合
+          if(a > h){
+
+
+            var Finish   = new SpeechSynthesisUtterance();
+            Finish.text  = 'Great!!Good job!!';
+            Finish.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+            Finish.pitch = 1;// 声の高さ 0-2 初期値:1(0で女性の声) 
+            Finish.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+            speechSynthesis.speak(Finish);
+  
+            modal.classList.remove('hidden');
+             //alert(`合格!!`)
+              
+              close.addEventListener('click',()=>{
+                location.reload();
+            })
+
+          }else{
+              //次の問題へ
+            a++;
+            Quizset();
+          }
+        },500);
+    
+      }else{
+        
+          //間違った場合
+
+        modal2.classList.remove('hidden');
+        
+        answer.textContent = ` 
+        "${question.textContent}" は「${item1.textContent}」です。やり直し！`;
+
+        var OMT   = new SpeechSynthesisUtterance();
+        OMT.text  = 'one more time';
+        OMT.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+        OMT.pitch = 1;// 声の高さ 0-2 初期値:1(0で女性の声) 
+        OMT.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+        speechSynthesis.speak(OMT);
+        
+        okay.addEventListener('click',()=>{
+          modal2.classList.add('hidden');
+          choice1.removeEventListener('click',event);
+        });
+        
+        Change();
+        Quizset();
+
         }};
+
       choice1.addEventListener('click',event,false);
               }
      checkAnswer();
 
-}
+} 
 
  }
 //表現
@@ -2044,20 +2182,25 @@ selectbox4.onchange = function(){
          }
  
  else { location.reload();}
-  
+
  function Quizset () {
+  choice1.removeEventListener('click',event);
   const b = Math.floor(Math.random() * (max - e)) + e ;
   let c = Math.floor(Math.random() * (max - f)) + f ;
   let d = Math.floor(Math.random() * (max - g)) + g ;
   
 Qnum.textContent = `No.${a + 1}`;
 question.textContent = QuizExpress[a].q;
+
 var speak   = new SpeechSynthesisUtterance();
 speak.text  = question.textContent;
-speak.rate  = 1;   speak.pitch = 1;
-speak.lang  = 'en-US'; 
+speak.rate  = 0.7; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+speak.pitch = 1;// 声の高さ 0-2 初期値:1(0で女性の声) 
+speak.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
 
 speechSynthesis.speak(speak);
+
+
 
 while(choice1.firstChild){
 choice1.removeChild(choice1.firstChild);
@@ -2108,46 +2251,75 @@ const ul1 = document.querySelector('ul');
         
       let event = function(e){
         let t = e.target;
+
+
         if(t == item1){
-          
-          alert("正解👍"); 
-        choice1.removeEventListener('click',event);
+        //正解の場合
 
-        if(a > h){
-          var Finish   = new SpeechSynthesisUtterance();
-          Finish.text  = 'Great!!Good job!!';
-          Finish.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
-          Finish.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
-          Finish.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
-          speechSynthesis.speak(Finish);
+        modal3.classList.remove('hidden');
+        isCorrected.textContent = `正解！`;  
 
-           alert(`合格!!`)
-            location.reload();
-        }else{
-          a++;
-        }
-        Quizset();
-    
-      }else{
-          alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
-
-          var OMT   = new SpeechSynthesisUtterance();
-          OMT.text  = 'one more time';
-          OMT.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
-          OMT.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
-          OMT.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
-          speechSynthesis.speak(OMT);
-          alert(`やりなおしです😩`); 
+        setTimeout(()=>{
+          modal3.classList.add('hidden');
 
           choice1.removeEventListener('click',event);
-         Change();
-          Quizset();
+
+          //合格の場合
+          if(a > h){
+
+
+            var Finish   = new SpeechSynthesisUtterance();
+            Finish.text  = 'Great!!Good job!!';
+            Finish.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+            Finish.pitch = 1;// 声の高さ 0-2 初期値:1(0で女性の声) 
+            Finish.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+            speechSynthesis.speak(Finish);
+  
+            modal.classList.remove('hidden');
+             //alert(`合格!!`)
+              
+              close.addEventListener('click',()=>{
+                location.reload();
+            })
+
+          }else{
+              //次の問題へ
+            a++;
+            Quizset();
+          }
+        },500);
+    
+      }else{
+        
+          //間違った場合
+
+        modal2.classList.remove('hidden');
+        
+        answer.textContent = ` 
+        "${question.textContent}" は「${item1.textContent}」です。やり直し！`;
+
+        var OMT   = new SpeechSynthesisUtterance();
+        OMT.text  = 'one more time';
+        OMT.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+        OMT.pitch = 1;// 声の高さ 0-2 初期値:1(0で女性の声) 
+        OMT.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+        speechSynthesis.speak(OMT);
+        
+        okay.addEventListener('click',()=>{
+          modal2.classList.add('hidden');
+          choice1.removeEventListener('click',event);
+        });
+        
+        Change();
+        Quizset();
+
         }};
+
       choice1.addEventListener('click',event,false);
               }
      checkAnswer();
 
-}
+} 
 
 
  }
